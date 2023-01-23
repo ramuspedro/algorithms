@@ -9,16 +9,46 @@ class ListNode:
         self.next = next
 
 class Solution:
+    # def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    #     current = head
+    #     temp = head
+    #     temp2 = None
+    #     while current != None:
+    #         current = current.next
+    #         temp.next = temp2
+    #         temp2 = temp
+    #         temp = current
+    #     return temp2
+
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        current = head
-        temp = head
-        temp2 = None
-        while current != None:
-            current = current.next
-            temp.next = temp2
-            temp2 = temp
-            temp = current
-        return temp2
+        # current = head
+        # temp = head
+        # temp2 = None
+        # while current != None:
+        #     current = current.next
+        #     temp.next = temp2
+        #     temp2 = temp
+        #     temp = current
+        # return temp2
+        if not head:
+            return None
+
+        newHead = head
+        if head.next:
+            newHead = self.reverseList(head.next)
+            head.next.next = head
+
+        head.next = None
+
+        return newHead
+
+    def reverse_list(self, head, prev = None):
+        if head is None:
+            return prev
+        next = head.next
+        head.next = prev
+        return self.reverse_list(next, head)
+
 
 solution = Solution()
 data = [1,2,3,4,5]
