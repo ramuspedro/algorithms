@@ -25,6 +25,22 @@ class Solution:
         
         return "/" + "/".join(result)
 
+    def simplifyPath2(self, path: str):
+        stack = []
+        cur = ""
+
+        for c in path + "/":
+            if c == "/":
+                if cur == "..":
+                    if stack: stack.pop()
+                elif cur != "" and cur != ".":
+                    stack.append(cur)
+                cur = ""
+            else:
+                cur += c
+
+        return "/" + "/".join(stack)
+
 
 solution = Solution()
 
