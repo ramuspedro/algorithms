@@ -17,11 +17,14 @@ class Solution:
 
         for el in s:
             if el in corresponding:
-                if len(stack) == 0:
+                # if len(stack) == 0:
+                #     return False
+                # aval = stack.pop()
+                # if aval != corresponding[el]:
+                #     return False
+                if len(stack) == 0 or stack[-1] != corresponding[el]:
                     return False
-                aval = stack.pop()
-                if aval != corresponding[el]:
-                    return False
+                stack.pop()
             else:
                 stack.append(el)
 
