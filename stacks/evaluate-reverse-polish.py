@@ -22,6 +22,29 @@ class Solution:
 
         return eval(stack[0])
 
+    def evalRPN2(self, tokens: List[str]) -> int:
+        priority = set(["+", "-", "*", "/"])
+        stack = []
+
+        for el in tokens:
+            if el not in priority:
+                stack.append(int(el))
+            else:
+                el2 = stack.pop()
+                el1 = stack.pop()
+                res = 0
+                if el == "+":
+                    res = el1 + el2
+                elif el == "-":
+                    res = el1 - el2
+                elif el == "*":
+                    res = el1 * el2
+                elif el == "/":
+                    res = el1 / el2
+                stack.append(int(res))
+
+        return stack[0]
+
 s = Solution()
 
 # print("6 = ", s.evalRPN(["4","13","5","/","+"]))
